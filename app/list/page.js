@@ -15,6 +15,7 @@ export default async function List() {
                 <div className="list-item" key={idx}>
                 <Link prefetch={false} href={`/detail/${item._id}`}>
                   <h4>{item.title}</h4></Link>
+                  <Link href={`/edit/${item._id}`}>✏️</Link>
                   <p>{item.content}</p>
                   <DetailLink></DetailLink>
                 </div>)
