@@ -1,6 +1,8 @@
+//큰페이지는 서버컴포넌트
+//js기능 넣을 부분만 클라이언트 컴포넌트
 import { connectDB } from "@/util/database"
-import Link from "next/link"
-import DetailLink from "./DetailLink"
+
+import ListItem from "./ListItem"
 
 export default async function List() {
     const db = (await connectDB).db("forum")
@@ -9,17 +11,7 @@ export default async function List() {
 
     return (
       <div className="list-bg">
-        {result.map((item,idx)=>{
-     
-            return (
-                <div className="list-item" key={idx}>
-                <Link prefetch={false} href={`/detail/${item._id}`}>
-                  <h4>{item.title}</h4></Link>
-                  <Link href={`/edit/${item._id}`}>✏️</Link>
-                  <p>{item.content}</p>
-                  <DetailLink></DetailLink>
-                </div>)
-        })}
+       <ListItem result={result}/>
       </div>
     )
   } 
