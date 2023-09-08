@@ -1,8 +1,15 @@
 import { connectDB } from "@/util/database"
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function Handler(req,res){
+    let session = await getServerSession(req,res,authOptions)
+    console.log(session.user.email)
+    
 
-
+    if(session){
+        req.body.author=session.user.email
+    }
     if(req.method==="POST"){
         const db = (await connectDB).db("forum")
         
