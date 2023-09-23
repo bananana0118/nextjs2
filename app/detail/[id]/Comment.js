@@ -6,8 +6,6 @@ export default function Comment(props) {
   let [comment, setComment] = useState("");
   const [data, setData] = useState([]);
 
-  console.log(props);
-
   const redirectionData = () => {
     fetch("/api/comment/list?id=" + props._id)
       .then((r) => r.json())
@@ -23,10 +21,8 @@ export default function Comment(props) {
         setData(result);
       });
   }, []);
-  console.log(data);
   return (
     <div>
-      <div>댓글목록 보여줄 부분</div>
       {data.length > 0
         ? data.map((a, i) => <p key={i}>{a.content}</p>)
         : "로딩중"}
